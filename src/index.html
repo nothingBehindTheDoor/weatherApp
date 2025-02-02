@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="body-container-inner">
+      <div id="body-container-inner-inner">
+        <header>
+          <div id="header-inner">
+            <h2>See weather here</h2>
+            <p id="disclaimer">Powered by Visualcrossing</p>
+          </div>
+          <div action="" id="search-form">
+            <input
+              type="text"
+              id="location-search"
+              placeholder="Enter a location..."
+              autocomplete="off"
+              required
+            />
+            <select name="Unit" id="unit-select" required>
+              <option value="metric">Metric</option>
+              <option value="us">Imperial</option>
+            </select>
+            <button id="search-btn" type="button">Search</button>
+          </div>
+        </header>
+        <main>
+          <div id="main-inner">
+            <h3 id="default-msg">Search for someplace!</h3>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
