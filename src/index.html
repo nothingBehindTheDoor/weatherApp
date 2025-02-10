@@ -10,23 +10,26 @@
       <div id="body-container-inner-inner">
         <header>
           <div id="header-inner">
-            <h2>See weather here</h2>
-            <p id="disclaimer">Powered by Visualcrossing</p>
+            <div id="header-heading-container">
+              <h2>See weather here</h2>
+              <p id="disclaimer">Powered by Visualcrossing</p>
+            </div>
+            <div action="" id="search-form">
+              <input
+                type="text"
+                id="location-search"
+                placeholder="Enter a location..."
+                autocomplete="off"
+                required
+              />
+              <select name="Unit" id="unit-select" required>
+                <option value="metric">Metric</option>
+                <option value="us">Imperial</option>
+              </select>
+              <button id="search-btn" type="button">Search</button>
+            </div>
           </div>
-          <div action="" id="search-form">
-            <input
-              type="text"
-              id="location-search"
-              placeholder="Enter a location..."
-              autocomplete="off"
-              required
-            />
-            <select name="Unit" id="unit-select" required>
-              <option value="metric">Metric</option>
-              <option value="us">Imperial</option>
-            </select>
-            <button id="search-btn" type="button">Search</button>
-          </div>
+          <div id="previous-searches-bar"></div>
         </header>
         <main>
           <div id="main-inner">
