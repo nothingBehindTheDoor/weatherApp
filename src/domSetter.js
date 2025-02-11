@@ -260,12 +260,11 @@ const favouriteLocationDomLogic = function (favourites) {
   const defaultViewSelect = document.createElement("select");
   defaultViewSelect.classList.add("default-view-select");
   defaultViewSelect.name = "Default location";
-  defaultViewSelect.value = "";
+  defaultViewSelect.value = localStorage.getItem("default-location");
   defaultViewSelectWrapper.appendChild(defaultViewSelect);
-  const defaultViewSelectDefaultOption = document.createElement("option");
-  defaultViewSelectDefaultOption.textContent = localStorage.getItem('default-location');
-  if (Object.keys(favourites).length !== 0)
-    defaultViewSelect.appendChild(defaultViewSelectDefaultOption);
+  const defaultViewSelectDefaultOption = document.createElement('option');
+  defaultViewSelectDefaultOption.value = '';
+  if (Object.keys(favourites).length !== 0) defaultViewSelect.appendChild(defaultViewSelectDefaultOption);
   const gapDivider = document.createElement("div");
   gapDivider.classList.add("gap-divider");
   document
@@ -284,15 +283,13 @@ const favouriteLocationDomLogic = function (favourites) {
     favouriteDiv.append(favouriteDivText, favouriteDivDelBtn);
     document.querySelector("#previous-searches-bar").appendChild(favouriteDiv);
 
-    if (favourite !== localStorage.getItem('default-location')) {
-      const option = document.createElement("option");
-      option.textContent = favourite;
-      option.value = favourite;
-      defaultViewSelect.appendChild(option);
-    }
+    const option = document.createElement("option");
+    option.textContent = favourite;
+    option.value = favourite;
+    defaultViewSelect.appendChild(option);
 
     favouriteDiv.addEventListener("click", (ev) => {
-      if (ev.target.classList.contains("favourite-div")) {
+      if (ev.currentTarget.classList.contains("favourite-div")) {
         fetchData(
           document.querySelector(".favourite-div-text").textContent,
           document.querySelector("#unit-select").value
@@ -301,23 +298,11 @@ const favouriteLocationDomLogic = function (favourites) {
         });
       }
     });
-
-    favouriteDivDelBtn.addEventListener("click", (ev) => {
-      let favouritesCurrent = JSON.parse(localStorage.getItem("favourites"));
-      delete favouritesCurrent[ev.target.previousSibling.textContent];
-      localStorage.setItem("favourites", JSON.stringify(favouritesCurrent));
-      if (
-        localStorage.getItem("default-location") ===
-        ev.target.previousSibling.textContent
-      )
-        localStorage.setItem("default-location", "");
-      favouriteLocationDomLogic(favouritesCurrent);
-    });
   }
 
   defaultViewSelect.addEventListener("change", (ev) => {
-    localStorage.setItem("default-location", ev.target.value);
-  });
+      localStorage.setItem("default-location", ev.target.value);
+    });
 };
 
 export { displayWeather, favouriteLocationDomLogic };
